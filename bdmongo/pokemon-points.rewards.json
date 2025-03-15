@@ -1,0 +1,13 @@
+[{
+  "_id": {
+    "$oid": "67d519327391e38848e9c08f"
+  },
+  "name": "Sobre Surging Sparks",
+  "description": "Sobre con 10 cartas",
+  "pointsRequired": 200,
+  "stock": 9,
+  "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_722488-MLA80624932768_112024-O.webp",
+  "isAvailable": true,
+  "__v": 0,
+  "active": true
+}]

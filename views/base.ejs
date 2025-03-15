@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéPuntos - Sistema de Puntos Pokémon</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4B8BF4;     /* Clear Sky Blue */
+            --secondary-color: #6E9FFF;   /* Bright Blue */
+            --accent-color: #A5C8FF;      /* Light Blue */
+            --dark-color: #2F4F8F;        /* Soft Navy */
+            --light-color: #F5F9FF;       /* Ice Blue */
+            --star-color: #FFFFFF;        /* Star White */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light-color) url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23A5C8FF' fill-opacity='0.2'/%3E%3Ccircle cx='50' cy='50' r='0.8' fill='%23A5C8FF' fill-opacity='0.2'/%3E%3Ccircle cx='90' cy='90' r='1.2' fill='%23A5C8FF' fill-opacity='0.2'/%3E%3C/svg%3E") repeat;
+            color: var(--dark-color);
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, #2a3f6f, #3b5186);
+            box-shadow: 0 4px 15px rgba(47, 79, 143, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(165, 200, 255, 0.15);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: var(--star-color) !important;
+            text-shadow: 0 0 15px rgba(165, 200, 255, 0.6);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        .nav-link:hover {
+            color: var(--star-color) !important;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(165, 200, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(47, 79, 143, 0.08);
+            border-radius: 12px;
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(47, 79, 143, 0.15);
+            border-color: rgba(165, 200, 255, 0.4);
+        }
+
+        .card-img-top {
+            transition: all 0.4s ease;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b5186, #4a67a3);
+            border: none;
+            box-shadow: 0 4px 15px rgba(47, 79, 143, 0.2);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            padding: 0.625rem 1.25rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(47, 79, 143, 0.3);
+            background: linear-gradient(135deg, #4a67a3, #3b5186);
+        }
+
+        .badge {
+            padding: 0.5em 1em;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(47, 79, 143, 0.1);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%),
+                        radial-gradient(circle at top right, var(--accent-color), transparent);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='1' fill='white' fill-opacity='0.4'/%3E%3C/svg%3E") repeat;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--star-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--light-color), transparent);
+        }
+
+        .text-muted {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .bg-purple {
+            background-color: var(--secondary-color);
+        }
+
+        /* Form Styles */
+        .form-control {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(165, 200, 255, 0.3);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(75, 139, 244, 0.25);
+        }
+
+        .input-group-text {
+            background-color: transparent;
+            border: 1px solid rgba(165, 200, 255, 0.3);
+            border-right: none;
+            color: var(--dark-color);
+        }
+
+        .input-group .form-control {
+            border-left: none;
+        }
+
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            border-bottom: none;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column h-100">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" 
+                     alt="PokéPuntos" width="32" height="32" class="me-2">
+                PokéPuntos
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home me-1"></i>Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">
+                            <i class="fas fa-sign-in-alt me-1"></i>
+                            Iniciar Sesión
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">
+                            <i class="fas fa-user-plus me-1"></i>
+                            Registrarse
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-shrink-0">
+        <%- body %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <span class="text-muted"> 2024 PokéPuntos. Todos los derechos reservados.</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

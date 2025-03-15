@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "67d4c3a0c2929f9b39ed87cb"
+  },
+  "name": "Ulises daniel",
+  "email": "uliseseter@gmail.com",
+  "phone": "3113425096",
+  "password": "$2a$10$0HKBvkshfeQVDi.pVi0y6uOvMsZ2nCUKPZ9aR5PpTuSIGns.klLj2",
+  "pokePoints": 0,
+  "isAdmin": false,
+  "active": true,
+  "createdAt": {
+    "$date": "2025-03-15T00:02:40.555Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4dd5cec6d653bc1b91408"
+  },
+  "username": "admin",
+  "email": "admin@pokepuntos.com",
+  "password": "$2b$10$DBLD/jQx3upqSdH8yGg8s.sORsfCAy2dUCUbj3rZjXnAGXWHPt2vG",
+  "points": 0,
+  "isAdmin": true,
+  "isActive": true,
+  "cards": [],
+  "createdAt": {
+    "$date": "2025-03-15T01:52:28.918Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d4df5858078a58c8eda2fc"
+  },
+  "username": "FARG0TXXX",
+  "email": "ulisesfargot@gmail.com",
+  "password": "$2b$10$LHbEbRVvITwYoLHsGUt83u.wK1NQn7G.tPaF8Yj5ddn.Kpotf.zji",
+  "points": 100,
+  "cards": [],
+  "isAdmin": false,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-03-15T02:00:56.217Z"
+  },
+  "__v": 0
+}]
