@@ -286,7 +286,7 @@ app.post('/login', async (req, res) => {
 app.get('/dashboard', authenticateToken, async (req, res) => {
     try {
         const user = await User.findById(req.user.userId);
-        const rewards = await Reward.find({ isAvailable: true });
+        const rewards = await Reward.find({ active: true });
 
         res.render('dashboard', {
             user: {
